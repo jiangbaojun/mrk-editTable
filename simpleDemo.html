@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        td{color:#999}
+        th{ cursor: move;line-height: 34px;min-width:150px;}
+        .createDivBg{ position: fixed;top: 0;bottom: 0;left: 0;right: 0;z-index: 10000;cursor: move;-moz-user-select:none;-webkit-user-select: none;-o-user-select: none;-ms-user-select:none}
+        .createDiv{ border: 1px dotted #ccc;height: 34px;line-height: 34px;background:#eee;position: absolute;z-index:100000}
+    </style>
+    <script type="text/javascript" src="dist/jquery.min.js"></script>
+    <script type="text/javascript" src="dist/vst-editTable.js"></script>
+    <script>
+        $(function(){
+            $("#editTable").vstEditTable({});
+        });
+    </script>
+
+</head>
+<body>
+<hr/>
+<div class="Report">
+    <table id="editTable" class="" border="1" cellspacing="0">
+        <thead>
+        <tr>
+            <th value="1">公司名称</th>
+            <th value="2">订单号</th>
+            <th value="3">操作日期</th>
+            <th value="4">PNR</th>
+            <th value="5">乘客英文名</th>
+            <th value="6">乘客类型</th>
+            <th value="7">证件类型</th>
+            <th value="8">证件号</th>
+            <th value="9">乘客手机号码</th>
+            <th value="10">票面价</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr et-typetr="text"><td>蓝城房产建设管理集团有限公司</td><td>FA20160801144605983</td><td et-typetd="date">2016-08-02</td><td>HY59C0</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>-940.00</td></tr>
+        <tr et-typetr="date"><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

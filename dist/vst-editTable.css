@@ -1,0 +1,14 @@
+/*单元格选中样式*/
+td.et-active{
+    border: 1px solid #ffff00;
+    background-color: #FF2F2F;
+    color: #fff;
+}
+
+/*编辑模式下，文本编辑器样式*/
+input.et-editor.text{
+    border: 1px solid #ffff00;
+    background-color: #ff701d;
+    color: #fff;
+}
+

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        td{color:#999}
+        th{ cursor: move;line-height: 34px;min-width:150px;}
+        .createDivBg{ position: fixed;top: 0;bottom: 0;left: 0;right: 0;z-index: 10000;cursor: move;-moz-user-select:none;-webkit-user-select: none;-o-user-select: none;-ms-user-select:none}
+        .createDiv{ border: 1px dotted #ccc;height: 34px;line-height: 34px;background:#eee;position: absolute;z-index:100000}
+    </style>
+    <script type="text/javascript" src="dist/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="dist/My97DatePicker/WdatePicker.js"></script>-->
+    <script type="text/javascript" src="dist/vst-editTable.js"></script>
+    <script>
+        /**
+         * 编辑表格控件VST-editTable说明
+         *  目前支持文本（text）、日期（date）两种数据编辑类型。
+         *  关于日期编辑器，采用My97DatePicker，本控件已默认集成。
+         *      如果需要手动引用自己的版本，请将autoQuoteDatePicker设置为false，并在引用本控件前引用My97DatePicker。如不引用，日期将采用text编辑。
+         *      如果需要自动引用自己的版本，请设置autoQuoteDatePicker为true，datePickerPath参数为自定义路径。
+         *
+         * 一、快捷键操作
+         *      键盘
+         *         选择要编辑的TD:                ARROW_LEFT = 37, ARROW_UP = 38, ARROW_RIGHT = 39, ARROW_DOWN = 40, TAB = 9
+         *         进入编辑模式：                 ENTER = 13
+         *         进入编辑模式，并选中内容：     CTRL = 17
+         *         退出编辑模式：                 ESC = 27
+         *       鼠标
+         *          单击：     选中TD
+         *          双击：     进入编辑模式
+         * 二、方法Method
+         *      1、edit(type)
+         *          方法用途：  编辑当前选中单元格
+         *          参数：      type，编辑类型，目前支持text、date。可选，默认text
+         *          示例：      $(element).vstEditTable("edit", "date");
+         * 三、事件event
+         *          1、onStartEdit(target)
+         *              进入编辑模式触发
+         *              参数
+         *                  target：待编辑的单元格对象
+         *          2、onCancelEdit(target)
+         *              取消本次编辑触发
+         *              参数
+         *                  target：被取消编辑的单元格对象
+         *          3、onChanged(oldValue, newValue)
+         *              输入完成并赋值后触发
+         *              参数
+         *                  oldValue：修改之前的值
+         *                  newValue：修改之后的值
+         *
+         *          4、onEndEdit(target)
+         *              完成本次编辑触发
+         *              参数
+         *                  target：本次编辑的单元格对象
+         *
+         *  四、初始化参数说明（无特殊说明，均为可选）
+         *      1、directEdit            是否在选中TD时，直接键入、粘贴修改内容。默认false
+         *      2、autoQuoteDatePicker   是否自动引入My97DatePicker（默认使用本控件集成的My97DatePicker），默认为true
+         *      3、datePickerPath        在autoQuoteDatePicker为true的时候，自定义My97DatePicker主js文件的引入路径（相对绝对都可以）。如：dist/My97DatePicker/WdatePicker.js
+         *      4、dataOptions           My97DatePicker日期控件相关选项。本控件引用My97DatePicker，配置详见：http://www.my97.net/demo/index.htm
+         *      5、scriptName            控件的主js文件名称（不带扩展名），默认vst-editTable。不建议修改。
+         *      6、styleName             控件的主css文件名称（不带扩展名），默认vst-editTable。不建议修改。
+         *      7、typeSerial            类型序列，值为数组格式，默认[]。表示数据从第一列到最后一列的数据类型（目前支持text、date）。注意：推荐在标准表格下使用（td不包含colspan、rowspan等属性），否则可能类型不准。
+         *      8、typeTd                标识类型的td属性名称，可选。DOM属性值为编辑类型（text、date）。通过为td添加属性限制单元格数据编辑类型。默认et-typetd。如：<td et-typetd="date">2016-08-02</td>
+         *      9、typeTr                标识类型的tr属性名称，可选。DOM属性值为编辑类型（text、date）。通过为tr添加属性限制行数据编辑类型。默认et-typetr。如： <tr et-typetr="text"><td>1</td><td>2</td></tr>
+         *
+         *  六、其他
+         *      1、样式，根据需求定制vst-editTable.css
+         *      2、不要改变vst-editTable.js的文件名称，如果要修改，请设置scriptName。但是不建议修改。
+         *      3、数据编辑类型指定优先级，从高到底：
+         *          调用方法直接指定编辑的数据类型 >
+         *          typeTd属性指定 >
+         *          typeTr属性指定 >
+         *          typeSerial限定 >
+         *          如果以上均不能确定，采用text
+         *
+         */
+        $(function(){
+            $("#editTable").vstEditTable({
+                directEdit: false,
+//                autoQuoteDatePicker: true,
+//                datePickerPath: "dist/My97DatePicker/WdatePicker.js",
+//                scriptName: "et2",
+//                styleName: "et2",
+//                typeTd: "et-typetd",
+//                typeTr: "et-typetr",
+                typeSerial: ["text","text","date","text","text","text","text","text","text","text"],
+                dataOptions:{
+                    dateFmt: "yyyy-MM-dd",
+                    minDate: "%y-%M-%d"
+                },
+                onStartEdit: function(target){
+                    console.log("start edit");
+                },
+                onCancelEdit: function(target){
+                    console.log("cancel edit");
+                },
+                onChanged: function(oldValue, newValue){
+                    console.log("change value, edited! "+oldValue+" -> "+newValue);
+                },
+                onEndEdit: function(target){
+                    console.log("end edit");
+                }
+            });
+        });
+        function toEditText(){
+//            $("#editTable").vstEditTable("edit");
+            $("#editTable").vstEditTable("edit", "text");
+        }
+        function toEditDate(){
+            $("#editTable").vstEditTable("edit", "date");
+        }
+    </script>
+
+</head>
+<body>
+<button onclick="toEditDate()">编辑为日期</button>
+<button onclick="toEditText()">编辑为文本</button>
+<hr/>
+<div class="Report">
+    <table id="editTable" class="" border="1" cellspacing="0">
+        <thead>
+        <tr>
+            <th value="1">公司名称</th>
+            <th value="2">订单号</th>
+            <th value="3">操作日期</th>
+            <th value="4">PNR</th>
+            <th value="5">乘客英文名</th>
+            <th value="6">乘客类型</th>
+            <th value="7">证件类型</th>
+            <th value="8">证件号</th>
+            <th value="9">乘客手机号码</th>
+            <th value="10">票面价</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr et-typetr="text"><td>蓝城房产建设管理集团有限公司</td><td>FA20160801144605983</td><td et-typetd="date">2016-08-02</td><td>HY59C0</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>-940.00</td></tr>
+        <tr et-typetr="date"><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        <tr><td>东芝信息机器（杭州）有限公司</td><td>FA20160729123124926</td><td>2016-08-02</td><td>KTFW44</td><td></td><td>成人</td><td>身份证</td><td>999999999999999999</td><td>18800000000</td><td>0.00</td></tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
