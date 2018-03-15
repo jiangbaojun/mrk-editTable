@@ -1,3 +1,12 @@
+/* -----------------------------------------------
+/* Author : jiangbaojun
+/* Demo
+/* GitHub : https://github.com/jiangbaojun/mrk-editTable.git
+/* How to use? : Check the GitHub README
+/* v1.0
+/* ----------------------------------------------- */
+
+
 /**
  * 编辑表格控件VST-editTable
  * @param options 初始化参数
